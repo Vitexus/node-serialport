@@ -1,0 +1,148 @@
+Source: node-serialport
+Section: javascript
+Priority: optional
+Maintainer: Vítězslav Dvořák <info@vitexsoftware.cz>
+Build-Depends:
+ debhelper-compat (= 13)
+Standards-Version: 4.7.0
+Homepage: https://github.com/serialport/node-serialport
+Vcs-Browser: https://github.com/Vitexus/node-serialport
+Vcs-Git: https://github.com/Vitexus/node-serialport.git
+Rules-Requires-Root: no
+
+
+Package: node-serialport
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ node-debug,
+ node-serialport-stream,
+ node-serialport-binding-mock,
+ node-serialport-bindings-cpp,
+ node-serialport-parser-byte-length,
+ node-serialport-parser-cctalk,
+ node-serialport-parser-delimiter,
+ node-serialport-parser-inter-byte-timeout,
+ node-serialport-parser-packet-length,
+ node-serialport-parser-readline,
+ node-serialport-parser-ready,
+ node-serialport-parser-regex,
+ node-serialport-parser-slip-encoder,
+ node-serialport-parser-spacepacket,
+ ${misc:Depends}
+Description: Node.js library to access serial ports
+ Part of the Node.js serialport library stack, providing access to serial
+ ports from Node.js. Used by the Node-RED serial port nodes on Debian.
+
+
+Package: node-serialport-stream
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ node-serialport-bindings-interface,
+ node-debug,
+ ${misc:Depends}
+Description: Stream interface for the Node.js serialport library
+ Part of the Node.js serialport library stack, providing access to serial
+ ports from Node.js. Used by the Node-RED serial port nodes on Debian.
+
+
+Package: node-serialport-parser-byte-length
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends}
+Description: Node.js serialport parser: byte length
+ Part of the Node.js serialport library stack, providing access to serial
+ ports from Node.js. Used by the Node-RED serial port nodes on Debian.
+
+
+Package: node-serialport-parser-cctalk
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends}
+Description: Node.js serialport parser: cctalk
+ Part of the Node.js serialport library stack, providing access to serial
+ ports from Node.js. Used by the Node-RED serial port nodes on Debian.
+
+
+Package: node-serialport-parser-delimiter
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends}
+Description: Node.js serialport parser: delimiter
+ Part of the Node.js serialport library stack, providing access to serial
+ ports from Node.js. Used by the Node-RED serial port nodes on Debian.
+
+
+Package: node-serialport-parser-inter-byte-timeout
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends}
+Description: Node.js serialport parser: inter byte timeout
+ Part of the Node.js serialport library stack, providing access to serial
+ ports from Node.js. Used by the Node-RED serial port nodes on Debian.
+
+
+Package: node-serialport-parser-packet-length
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends}
+Description: Node.js serialport parser: packet length
+ Part of the Node.js serialport library stack, providing access to serial
+ ports from Node.js. Used by the Node-RED serial port nodes on Debian.
+
+
+Package: node-serialport-parser-readline
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ node-serialport-parser-delimiter,
+ ${misc:Depends}
+Description: Node.js serialport parser: readline
+ Part of the Node.js serialport library stack, providing access to serial
+ ports from Node.js. Used by the Node-RED serial port nodes on Debian.
+
+
+Package: node-serialport-parser-ready
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends}
+Description: Node.js serialport parser: ready
+ Part of the Node.js serialport library stack, providing access to serial
+ ports from Node.js. Used by the Node-RED serial port nodes on Debian.
+
+
+Package: node-serialport-parser-regex
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends}
+Description: Node.js serialport parser: regex
+ Part of the Node.js serialport library stack, providing access to serial
+ ports from Node.js. Used by the Node-RED serial port nodes on Debian.
+
+
+Package: node-serialport-parser-slip-encoder
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends}
+Description: Node.js serialport parser: slip encoder
+ Part of the Node.js serialport library stack, providing access to serial
+ ports from Node.js. Used by the Node-RED serial port nodes on Debian.
+
+
+Package: node-serialport-parser-spacepacket
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends}
+Description: Node.js serialport parser: spacepacket
+ Part of the Node.js serialport library stack, providing access to serial
+ ports from Node.js. Used by the Node-RED serial port nodes on Debian.

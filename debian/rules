@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+# Multi-binary package built from the node-serialport monorepo.
+# Pre-built dist/ is vendored from the npm release; no build step needed.
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+override_dh_auto_build:
+override_dh_auto_test:

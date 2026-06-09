@@ -1,0 +1,17 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: node-serialport
+Source: https://github.com/serialport/node-serialport
+
+Files: *
+Copyright: 2010-2024 Serialport contributors
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction. THE SOFTWARE IS PROVIDED "AS IS",
+ WITHOUT WARRANTY OF ANY KIND. See /usr/share/common-licenses for related
+ license texts.
+
+Files: debian/*
+Copyright: 2026 Vítězslav Dvořák <info@vitexsoftware.cz>
+License: Expat
+ As above.

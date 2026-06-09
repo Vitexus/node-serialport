@@ -1,0 +1,2 @@
+packages/parser-packet-length/package.json usr/share/nodejs/@serialport/parser-packet-length/
+packages/parser-packet-length/dist usr/share/nodejs/@serialport/parser-packet-length/

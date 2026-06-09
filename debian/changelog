@@ -1,0 +1,7 @@
+node-serialport (13.0.0) unstable; urgency=medium
+
+  * Initial Debian packaging of the node-serialport monorepo: node-serialport
+    plus @serialport/stream and the standard parsers, with pre-built dist/
+    vendored from the upstream npm release.
+
+ -- Vítězslav Dvořák <info@vitexsoftware.cz>  Tue, 09 Jun 2026 15:00:00 +0200
