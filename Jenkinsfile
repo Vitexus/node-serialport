@@ -11,7 +11,7 @@ String vendor = 'vitexsoftware'
 //String distroFamily = ''
 
 properties([
-    copyArtifactPermission('*')
+    copyArtifactPermission('Foregin/*')
 ])
 node() {
     ansiColor('xterm') {
@@ -49,11 +49,21 @@ distributions.each { distro ->
                 }
                 stage('Build ' + distroName) {
                     buildImage.inside {
-                        sh 'dch -b -v ' + buildVer  + ' "' + env.BUILD_TAG  + '"'
+                        withEnv(["BUILDVER=${buildVer}"]) {
+                            sh 'dch -b -v "$BUILDVER" "$BUILD_TAG"'
+                        }
                         sh 'sudo apt-get update --allow-releaseinfo-change'
                         sh 'sudo chown jenkins:jenkins ..'
                         sh 'debuild-pbuilder -r"sudo -E" -i -us -uc -b'
-                        sh 'mkdir -p $WORKSPACE/dist/debian/ ; rm -rf $WORKSPACE/dist/debian/* ; for deb in $(cat debian/files | awk \'{print $1}\'); do mv "../$deb" $WORKSPACE/dist/debian/; done'
+                        sh '''
+                            mkdir -p $WORKSPACE/dist/debian/
+                            rm -rf $WORKSPACE/dist/debian/*
+                            while IFS= read -r deb _; do
+                                case "$deb" in -*) continue;; esac
+                                [ -n "$deb" ] || continue
+                                mv -- "../$deb" "$WORKSPACE/dist/debian/"
+                            done < debian/files
+                        '''
                         artifacts = sh (
                             script: "cat debian/files | awk '{print \$1}'",
                             returnStdout: true
@@ -70,7 +80,7 @@ distributions.each { distro ->
                         sh 'echo "INSTALATION"'
 
                     def installOrder = [
-                        'node-cache',
+                        'node-serialport',
                     ]
 
                     def sorted_artifacts = artifacts.toList()
@@ -85,10 +95,14 @@ distributions.each { distro ->
                         }
                         if (debFile) {
                             def pkgName = debFile.tokenize('/')[-1].replaceFirst(/_.*/, '')
-                            sh 'echo -e "${GREEN} installing ' + pkgName + ' on `lsb_release -sc` ${ENDCOLOR} "'
-                            sh 'sudo DEBIAN_FRONTEND=noninteractive DEBCONF_DEBUG=' + debconf_debug + ' apt-get -y install ' + pkgName + ' || sudo apt-get -y -f install'
+                            if (!(pkgName ==~ /^[a-z0-9][a-z0-9+.\-]+$/)) { error("Invalid package name: ${pkgName}") }
+                            withEnv(["PKG=${pkgName}"]) {
+                                sh 'echo "Installing $PKG on $(lsb_release -sc)"'
+                                sh 'sudo DEBIAN_FRONTEND=noninteractive apt-get -y install "$PKG"'
+                            }
                         }
                     }
+                    sh 'sudo rm -f /etc/apt/sources.list.d/local.list'
 
                 }
                 stage('Archive artifacts ' + distroName ) {
